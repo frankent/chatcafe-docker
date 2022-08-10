@@ -1,0 +1,50 @@
+version: '3'
+services:
+  app:
+    container_name: chatcafe-server 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: '/data/chatcafe-server'
+    volumes:
+      - ../chatcafe-server:/data/chatcafe-server
+    command: bash -c "npm install && yarn dev"
+    ports:
+      - 5000:5000 # Service Port is 5000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  mongo:
+    container_name: mongodb
+    image: mongo:3.6
+    volumes:
+      - /db/mongo
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+
+  redis:
+    container_name: redisdb
+    image: redis
+    volumes:
+      - /db/redis
+    expose:
+      - 6379
+    # ports:
+    #   - "6379:6379"
+  
+  firebase-emulator:
+    container_name: firebase-emulator
+    image: spine3/firebase-emulator
+    ports:
+      # - '9000:9000'
+      - '8080:8080'
+      - '4000:4000'
+      # - '9099:9099'
+      # - '8085:8085'
+      # - '5001:5001'
+      # - '9199:9199'
+    environment:
+      - GCP_PROJECT=kaidee-beta
+      - ENABLE_UI=true
