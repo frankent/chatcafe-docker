@@ -4,7 +4,15 @@ FROM node:8
 WORKDIR /data
 
 RUN apt-get update
-RUN apt-get install -y make gcc g++ python build-essential
 
-# Setup firebase-cli for support test
-RUN npm i firebase-tools
+# Setup dependencies (JAVA and Firebase for KaideeChat)
+RUN apt-get install -y \
+    make \
+    gcc \
+    g++ \
+    python \
+    build-essential \
+    default-jdk \
+    default-jre  
+
+RUN npm i firebase-tools -g
