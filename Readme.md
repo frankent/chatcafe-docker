@@ -12,10 +12,10 @@ Ready to use docker-compose script for `chatcafe-server` project
 - Update hostname of mongodb and redis in `db.config.js` to down here
   ```
   if (process.env.LOCAL) {
-    options.mongoServers = ['mongodb:27017']  // <--- use this name instead of localhost of ip
+    options.mongoServers = ['mongodb:27017']  // <--- use this name instead of localhost or ip
     options.mongoUser = null
     options.mongoPassword = null
-    options.redisServers = ['redisdb:6379']  // <--- use this name instead of localhost of ip
+    options.redisServers = ['redisdb:6379']  // <--- use this name instead of localhost or ip
     options.redisPass = null
     options.useRedisSentinel = false
   }
